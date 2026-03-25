@@ -1,6 +1,0 @@
-@Taller.WebApi.http_HostAddress = http://localhost:5283
-
-GET {{Taller.WebApi.http_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
