@@ -1,5 +1,0 @@
-<Solution>
-  <Project Path="Insta.Web/Insta.Web.csproj" />
-  <Project Path="Insta.WebApi.Application/Insta.Application.csproj" />
-  <Project Path="Insta.WebApi.Shared/Insta.Shared.csproj" />
-</Solution>
