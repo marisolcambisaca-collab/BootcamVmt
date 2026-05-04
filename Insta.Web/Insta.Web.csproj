@@ -15,7 +15,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Insta.WebApi.Application\Insta.Application.csproj" />
-    <ProjectReference Include="..\Insta.WebApi.Shared\Insta.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
 
 </Project>

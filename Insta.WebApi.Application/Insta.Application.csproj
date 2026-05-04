@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Insta.WebApi.Shared\Insta.Shared.csproj" />
+    <ProjectReference Include="..\Instagram.Domain\Instagram.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,4 +2,6 @@
   <Project Path="Insta.Web/Insta.Web.csproj" />
   <Project Path="Insta.WebApi.Application/Insta.Application.csproj" />
   <Project Path="Insta.WebApi.Shared/Insta.Shared.csproj" />
+  <Project Path="Instagram.Domain/Instagram.Domain.csproj" Id="b620314a-b7ba-4fd4-b8c3-dfa4b19a427f" />
+  <Project Path="Instagram.Infrastructure/Instagram.Infrastructure.csproj" Id="ba232aa8-a21a-4e68-83d0-79130241d1f3" />
 </Solution>
