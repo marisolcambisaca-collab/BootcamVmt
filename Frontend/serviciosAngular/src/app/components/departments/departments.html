@@ -1,0 +1,20 @@
+ <h2>🏢 Departamentos</h2>
+
+@if (loading) {
+  <p class="loading">Cargando departamentos...</p>
+}
+
+@if (error) {
+  <p class="error">{{ error }}</p>
+}
+
+@if (!loading && !error) {
+  <div class="grid">
+    @for (dept of departments; track dept.id) {
+      <div class="card">
+        <h3>{{ dept.name }}</h3>
+        <span class="badge">ID: {{ dept.id }}</span>
+      </div>
+    }
+  </div>
+}
