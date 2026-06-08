@@ -1,0 +1,110 @@
+<nav>
+  <button (click)="toggleNotificaciones()" class="btn-nav">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" width="26" height="26">
+      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+    </svg>
+  </button>
+
+  <a routerLink="/feed" routerLinkActive="activo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" width="26" height="26">
+      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+      <polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+  </a>
+
+  <button (click)="toggleBuscar()" class="btn-nav">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" width="26" height="26">
+      <circle cx="11" cy="11" r="8"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
+  
+<a routerLink="/mensajes" class="btn-nav" style="text-decoration:none">
+  <i class="bi bi-send" style="color:#fff; font-size:26px;"></i>
+</a>
+
+
+
+<a [routerLink]="['/profile', userId]" class="btn-nav" style="text-decoration:none">
+  <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;color:#fff;">
+    {{ getAvatarLetter() }}
+  </div>
+</a>
+
+  <a [routerLink]="userId ? ['/', userId, 'posts'] : null" routerLinkActive="activo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" width="26" height="26">
+      <rect x="3" y="3" width="18" height="18" rx="2"/>
+      <line x1="12" y1="8" x2="12" y2="16"/>
+      <line x1="8" y1="12" x2="16" y2="12"/>
+    </svg>
+  </a>
+
+  <button (click)="toggleMenu()" class="btn-menu">
+    <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="-22 -22 44 44">
+      <line x1="-10" y1="-6" x2="10" y2="-6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="-10" y1="0" x2="10" y2="0" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="-10" y1="6" x2="10" y2="6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+ 
+@if (showMenu) {
+  <div class="menu-overlay" (click)="toggleMenu()"></div>
+  <div class="menu-panel">
+    <div class="menu-panel-header">
+      <span>Más opciones</span>
+    </div>
+
+    <button class="menu-item" (click)="toggleTheme(); toggleMenu()">
+      <div class="menu-item-icon icon-theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="17" height="17">
+          @if (!isDark()) {
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          } @else {
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+          }
+        </svg>
+      </div>
+      <div class="menu-item-text">
+        <span class="menu-item-label">{{ isDark() ? 'Modo claro' : 'Modo oscuro' }}</span>
+        <span class="menu-item-sub">Cambiar apariencia</span>
+      </div>
+    </button>
+
+    <div class="menu-divider"></div>
+
+    <button class="menu-item" (click)="logout()">
+      <div class="menu-item-icon icon-logout">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#e53935" stroke-width="2" width="17" height="17">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
+        </svg>
+      </div>
+      <div class="menu-item-text">
+        <span class="menu-item-label danger">Cerrar sesión</span>
+        <span class="menu-item-sub">Salir de tu cuenta</span>
+      </div>
+    </button>
+  </div>
+}
+
+
+</nav>
+
+@if (mostrarBuscar) {
+  <div class="overlay-transparente" (click)="cerrarTodos()"></div>
+  <div class="panel-buscar" (click)="$event.stopPropagation()">
+    <app-buscar-componet></app-buscar-componet>   
+  </div>
+}
+@if (mostrarNotificaciones) {
+  <div class="overlay-transparente" (click)="cerrarTodos()"></div>
+  <div class="panel-notificaciones">
+    <p style="padding:16px;color:#333;">Notificaciones (próximamente)</p>
+  </div>
+}

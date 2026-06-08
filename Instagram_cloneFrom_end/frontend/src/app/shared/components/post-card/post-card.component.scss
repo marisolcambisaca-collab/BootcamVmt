@@ -1,0 +1,571 @@
+.post-card {
+  background: var(--bg);
+  border-radius: 4px;
+  margin-bottom: 24px;
+  overflow: visible;
+  position: relative;
+}
+
+ .post-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  position: relative;
+}
+
+.post-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.story-ring {
+  padding: 2px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+
+  &.viewed { background: var(--border); }
+  &.no-story { background: transparent; padding: 0; }
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  border: 2px solid var(--surface);
+}
+
+.post-user-info {
+  display: flex;
+  flex-direction: column;
+
+  .username {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .verified-badge {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .location {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  padding: 4px;
+  svg { width: 20px; height: 20px; }
+}
+
+.post-menu {
+  position: absolute;
+  top: 44px;
+  right: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  min-width: 180px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  z-index: 10;
+  overflow: hidden;
+
+  .menu-item {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-primary);
+    text-align: center;
+    font-weight: 500;
+    transition: background 0.15s;
+
+    &:last-child { border-bottom: none; }
+    &:hover { background: var(--surface-2); }
+    &.danger { color: var(--danger); font-weight: 700; }
+  }
+}
+
+/* Image */
+.post-image-wrapper {
+  width: 100%;
+  position: relative;
+  background: var(--surface-2);
+  min-height: 200px;
+
+  .image-skeleton {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface) 50%, var(--surface-2) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  img {
+    width: 100%;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.3s;
+    cursor: pointer;
+    max-height: 600px;
+    object-fit: cover;
+
+    &.loaded { opacity: 1; }
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Actions */
+.post-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px 4px;
+}
+
+.actions-left {
+  display: flex;
+  gap: 4px;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.15s;
+
+  svg { width: 24px; height: 24px; }
+
+  &:hover { transform: scale(1.1); }
+  &:active { transform: scale(0.9); }
+
+  &.liked { animation: heartBeat 0.3s ease; }
+  &.saved svg { color: var(--text-primary); }
+
+  &.ghost-btn {
+    color: var(--text-secondary);
+    svg { fill: var(--text-secondary); }
+
+    &.active {
+      color: #26c4c4;
+      svg { fill: #26c4c4; }
+    }
+  }
+
+  &.reaction-btn.active {
+    color: #f9a826;
+    svg { stroke: #f9a826; }
+  }
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* Likes */
+.post-likes {
+  padding: 0 16px 6px;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+/* Description */
+.post-description {
+  padding: 0 16px 8px;
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.5;
+
+  .desc-username {
+    font-weight: 700;
+    margin-right: 4px;
+  }
+
+  .hashtags {
+    color: var(--accent);
+    font-weight: 500;
+  }
+}
+
+/* Comments */
+.post-comments {
+  padding: 0 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.view-comments {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-secondary);
+  padding: 0;
+  text-align: left;
+}
+
+.comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.4;
+
+  .comment-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  p { margin: 0; }
+  .comment-username { font-weight: 700; margin-right: 4px; }
+}
+
+ .post-add-comment {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+
+  .my-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: var(--text-primary);
+    &::placeholder { color: var(--text-secondary); }
+  }
+
+  .post-comment-btn {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0.5;
+    &:hover { opacity: 1; }
+  }
+}
+
+/* Time */
+.post-time {
+  padding: 0 16px 12px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+// SVG tamaño de reacciones
+.action-btn svg {
+  width: 26px;
+  height: 26px;
+}
+
+ .action-btn.activo-interesante svg {
+  animation: celebrarPulse 0.3s ease;
+}
+
+ .action-btn.activo-celebrar svg {
+  stroke: #009999;
+  animation: celebrarPulse 0.3s ease;
+}
+
+ .action-btn.activo-divertido svg {
+  animation: celebrarPulse 0.3s ease;
+}
+
+@keyframes celebrarPulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+// ===== REACCIONES =====
+
+// Interesante - bombilla (SVG grande)
+.btn-interesante {
+  svg {
+    width: 45px !important;
+    height: 52px !important;
+  }
+  &.activo-interesante svg {
+    animation: reaccionPulse 0.3s ease;
+  }
+}
+
+// Celebrar - globos
+.btn-celebrar {
+  svg {
+    width: 35px !important;
+    height: 40px !important;
+  }
+  &.activo-celebrar svg {
+    animation: reaccionPulse 0.3s ease;
+  }
+}
+
+ .btn-divertido {
+  svg {
+    width: 35px !important;
+    height: 40px !important;
+  }
+  &.activo-divertido svg {
+    animation: reaccionPulse 0.3s ease;
+  }
+}
+
+@keyframes reaccionPulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+.post-card {
+  background: #fff;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #efefef;
+  max-width: 470px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.usuario {
+  font-weight: 600;
+  font-size: 14px;
+  flex: 1;
+}
+
+.mas-opciones {
+  cursor: pointer;
+  color: #000000;
+}
+
+.post-media {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  display: block;
+}
+
+ .post-acciones {
+  display: flex;
+  padding: 8px 6px;
+  gap: 2px;
+}
+
+.btn-accion {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 55px;
+  border-radius: 50%;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.btn-accion:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+  transform: scale(1.15);
+}
+
+.btn-accion:active {
+  transform: scale(0.9);
+}
+
+ 
+.btn-accion mat-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  color: #000504;
+  transition: color 0.2s;
+}
+
+.btn-accion mat-icon.liked {
+  color: #ff0505;
+  animation: pulse 0.3s ease;
+  width: 35px;
+  height: 30px;
+  font-size: 31px;
+}
+
+ 
+.btn-accion:hover i {
+  transform: scale(1.1);
+}
+
+ 
+.celebrar svg {
+  stroke: #262626;
+  transition: stroke 0.2s;
+    margin-left: -5px;
+
+}
+
+
+.post-likes {
+  padding: 0 12px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #000000;
+  margin-bottom: 4px;
+}
+
+.post-descripcion {
+  padding: 0 12px;
+  font-size: 14px;
+  color: #262626;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.post-tiempo {
+  padding: 0 12px 10px;
+  font-size: 11px;
+  color: #8e8e8e;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.celebrar.activo svg {
+  stroke: #009999;
+   animation: celebrarPulse 0.3s ease;
+}
+@keyframes celebrarPulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+ 
+.btn-accion.activo-interesante svg {
+  animation: celebrarPulse 0.3s ease;
+}
+
+ 
+.btn-accion.activo-celebrar svg {
+  animation: celebrarPulse 0.3s ease;
+}
+.btn-accion svg {
+  width: 60px;
+  height: 80px;
+}
+.btn-accion.comentario {
+  margin-left: 25px;
+}
+.btn-like mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+.btn-like mat-icon.liked {
+  color: #003cff; /* color activo */
+  animation: pulse 0.3s ease;
+}
+.btn-like mat-icon:not(.liked) {
+  font-size: 28px !important;
+  width: 30px !important;
+  height: 30px !important;
+  color: #262626;
+}
+.bi-chat-dots {
+  font-size: 22px;
+  color: #262626;
+}
+ 
+.activo-interesante .bi-rocket-takeoff {
+  animation: celebrarPulse 0.3s ease;
+}
+.bi-rocket-takeoff {
+  font-size: 28px;
+  transition: color 0.2s;
+}
+
+ 
+
+
+
+.bi-rocket-takeoff-fill {
+  font-size: 25px;
+  transition: color 0.2s;
+}
+
+.activo-interesante .bi-rocket-takeoff-fill {
+  animation: celebrarPulse 0.3s ease;
+}
+
+ 

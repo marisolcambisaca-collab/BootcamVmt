@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="InstagramClone.Application/InstagramClone.Application.csproj" Id="693f806b-0f01-45f6-99e9-1cb6b31ded9a" />
+  <Project Path="InstagramClone.Domain/InstagramClone.Domain.csproj" Id="fb362e93-aa3d-4252-a22e-882db5e8d49d" />
+  <Project Path="InstagramClone.Infrastructure/InstagramClone.Infrastructure.csproj" Id="4a8f5ce1-b931-448e-8856-47ac27bd598a" />
+  <Project Path="InstagramClone.Shared/InstagramClone.Shared.csproj" Id="f104b6ec-88b8-4660-b8ab-c93ec6dade48" />
+  <Project Path="InstagramClone.WebApi/InstagramClone.WebApi.csproj" Id="80a59458-41b4-4c19-9a53-8309528bb911" />
+</Solution>

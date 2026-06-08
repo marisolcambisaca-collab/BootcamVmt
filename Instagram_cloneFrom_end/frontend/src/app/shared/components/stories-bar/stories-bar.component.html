@@ -1,0 +1,58 @@
+<div class="stories-header">
+  <!-- Stories scroll -->
+  <div class="sh-stories">
+    <div class="story-item">
+      <div class="add-story-ring">
+        <div class="story-avatar my-story">
+          {{ getMyLetter() }}
+          <div class="add-badge">+</div>
+        </div>
+      </div>
+      <span>Tu historia</span>
+    </div>
+
+    @for (user of users; track user.id) {
+      <div class="story-item" (click)="openStory(user)" [class.clickable]="user.hasStory">
+        <div class="story-ring-wrapper" [class.has-story]="user.hasStory" [class.viewed]="user.storyViewed">
+          <div class="story-avatar" [style.background]="user.avatarColor">{{ user.avatarLetter }}</div>
+        </div>
+        <span>{{ user.username.split('.')[0] }}</span>
+      </div>
+    }
+  </div>
+
+   <div class="sh-profile">
+    <div class="sh-avatar">{{ getMyLetter() }}</div>
+    <div class="sh-user-info">
+      <span class="sh-username">{{ getMyUsername() }}</span>
+      <span class="sh-name">{{ getMyDisplayName() }}</span>
+    </div>
+    <button class="sh-switch-btn">Cambiar</button>
+  </div>
+</div>
+
+@if (viewingStory()) {
+  <div class="story-modal" (click)="closeStory()">
+    <div class="story-content" (click)="$event.stopPropagation()">
+      <div class="story-progress-bar">
+        <div class="story-progress-fill" [style.width.%]="storyProgress()"></div>
+      </div>
+      <div class="story-user-info">
+        <div class="story-avatar-sm" [style.background]="viewingStory()!.avatarColor">{{ viewingStory()!.avatarLetter }}</div>
+        <span class="story-username">{{ viewingStory()!.username }}</span>
+        <span class="story-time">hace 2h</span>
+      </div>
+      <button class="story-close" (click)="closeStory()">✕</button>
+      <div class="story-image" [style.background]="'linear-gradient(135deg, ' + viewingStory()!.avatarColor + '88, ' + viewingStory()!.avatarColor + '44)'">
+        <div class="story-placeholder">
+          <div class="story-big-avatar" [style.background]="viewingStory()!.avatarColor">{{ viewingStory()!.avatarLetter }}</div>
+          <p>Historia de {{ viewingStory()!.displayName }}</p>
+        </div>
+      </div>
+      <div class="story-reply">
+        <input type="text" [placeholder]="'Responder a ' + viewingStory()!.username + '...'" (click)="$event.stopPropagation()" />
+        <button>❤️</button>
+      </div>
+    </div>
+  </div>
+}
