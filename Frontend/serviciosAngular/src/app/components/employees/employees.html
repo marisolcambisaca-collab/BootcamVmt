@@ -1,0 +1,57 @@
+<h2>empleados</h2>
+
+<!-- Formulario agregar -->
+<div class="form">
+  <input [(ngModel)]="nuevoEmpleado.name" placeholder="Nombre" />
+  <input [(ngModel)]="nuevoEmpleado.email" placeholder="Email" />
+  <input [(ngModel)]="nuevoEmpleado.phone" placeholder="Teléfono" />
+  <input [(ngModel)]="nuevoEmpleado.position" placeholder="Cargo" />
+  <input [(ngModel)]="nuevoEmpleado.department" placeholder="Departamento" />
+  <input [(ngModel)]="nuevoEmpleado.salary" placeholder="Salario" />
+  <button (click)="agregarEmployee()">+ Agregar Empleado</button>
+</div>
+
+<!-- Botones generales -->
+<button (click)="editarEmployee()">Editar primero</button>
+
+@if (loading) {
+  <p class="loading">Cargando empleados...</p>
+}
+
+@if (error) {
+  <p class="error">{{ error }}</p>
+  <button (click)="cargarEmployees()">Reintentar</button>
+}
+
+@if (!loading && !error) {
+
+  <div class="grid">
+    @for (emp of employees; track emp.id) {
+      <div class="card">
+        <h3>{{ emp.name }}</h3>
+        <p>{{ emp.position }}</p>
+        <p>{{ emp.department }}</p>
+        <p>{{ emp.email }}</p>
+        <p>{{ emp.phone }}</p>
+        <p>${{ emp.salary }}</p>
+        <button (click)="eliminarEmployee(emp.id)">Eliminar</button>
+      </div>
+    }
+  </div>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
